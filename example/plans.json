@@ -1,0 +1,329 @@
+{
+ "L1": {
+  "glob-lookup": {
+   "globs": [
+    "*vegetable*",
+    "*tofu*",
+    "*halloumi*",
+    "*feta*",
+    "*dal*"
+   ]
+  },
+  "field-lookup": {
+   "all": [
+    {
+     "field": "categories",
+     "any": [
+      "Vegetarian"
+     ]
+    },
+    {
+     "field": "prep",
+     "op": "<=",
+     "value": 30
+    }
+   ]
+  },
+  "graph": {
+   "none": true
+  },
+  "hybrid": {
+   "like": "quick vegetarian dinner",
+   "filters": [
+    {
+     "field": "categories",
+     "any": [
+      "Vegetarian"
+     ]
+    },
+    {
+     "field": "prep",
+     "op": "<=",
+     "value": 30
+    }
+   ]
+  }
+ },
+ "L2": {
+  "glob-lookup": {
+   "globs": [
+    "*chicken-breast*"
+   ]
+  },
+  "field-lookup": {
+   "all": [
+    {
+     "field": "protein",
+     "any": [
+      "chicken breast"
+     ]
+    },
+    {
+     "not": {
+      "title_any": [
+       "curry"
+      ]
+     }
+    }
+   ]
+  },
+  "graph": {
+   "rule": "uses_all",
+   "items": [
+    "chicken breast"
+   ]
+  },
+  "hybrid": {
+   "like": "chicken breast dinner",
+   "filters": [
+    {
+     "field": "protein",
+     "any": [
+      "chicken breast"
+     ]
+    },
+    {
+     "not": {
+      "title_any": [
+       "curry"
+      ]
+     }
+    }
+   ]
+  }
+ },
+ "L3": {
+  "glob-lookup": {
+   "globs": [
+    "*cod*",
+    "*salmon*",
+    "*fish*"
+   ]
+  },
+  "field-lookup": {
+   "all": [
+    {
+     "field": "protein",
+     "any": [
+      "cod",
+      "salmon"
+     ]
+    },
+    {
+     "field": "kcal",
+     "op": "<",
+     "value": 500
+    }
+   ]
+  },
+  "graph": {
+   "rule": "uses_all",
+   "items": [],
+   "protein_in": [
+    "cod",
+    "salmon"
+   ]
+  },
+  "hybrid": {
+   "like": "light fish dinner",
+   "filters": [
+    {
+     "field": "protein",
+     "any": [
+      "cod",
+      "salmon"
+     ]
+    },
+    {
+     "field": "kcal",
+     "op": "<",
+     "value": 500
+    }
+   ]
+  }
+ },
+ "S1": {
+  "glob-lookup": {
+   "globs": [
+    "*tomato*",
+    "*olive*"
+   ]
+  },
+  "field-lookup": {
+   "all": [
+    {
+     "field": "cuisine",
+     "any": [
+      "Mediterranean"
+     ]
+    },
+    {
+     "not": {
+      "field": "protein",
+      "any": [
+       "cod",
+       "salmon"
+      ]
+     }
+    }
+   ]
+  },
+  "graph": {
+   "rule": "shares_with_seed",
+   "seed": "cod-with-tomato-and-olive-sauce",
+   "min_shared": 2,
+   "protein_not_in": [
+    "cod",
+    "salmon"
+   ]
+  },
+  "hybrid": {
+   "like": "tomato and olive sauce, bright and salty, Mediterranean",
+   "filters": [
+    {
+     "not": {
+      "field": "protein",
+      "any": [
+       "cod",
+       "salmon"
+      ]
+     }
+    }
+   ],
+   "exclude_seed": "cod-with-tomato-and-olive-sauce"
+  }
+ },
+ "S2": {
+  "glob-lookup": {
+   "globs": [
+    "*lemon*",
+    "*lime*",
+    "*herb*"
+   ]
+  },
+  "field-lookup": {
+   "all": [
+    {
+     "field": "categories",
+     "any": [
+      "Healthy"
+     ]
+    },
+    {
+     "field": "prep",
+     "op": "<=",
+     "value": 30
+    }
+   ]
+  },
+  "graph": {
+   "none": true
+  },
+  "hybrid": {
+   "like": "light, fresh, zesty",
+   "filters": [
+    {
+     "field": "prep",
+     "op": "<=",
+     "value": 35
+    }
+   ]
+  }
+ },
+ "R1": {
+  "glob-lookup": {
+   "globs": [
+    "*spinach*",
+    "*feta*"
+   ]
+  },
+  "field-lookup": {
+   "all": [
+    {
+     "ingredient": "spinach"
+    }
+   ]
+  },
+  "graph": {
+   "rule": "shares_with_seed",
+   "seed": "spinach-and-feta-filo-pie",
+   "min_shared": 2,
+   "fresh_only": true
+  },
+  "hybrid": {
+   "like": "spinach and feta",
+   "filters": [],
+   "exclude_seed": "spinach-and-feta-filo-pie"
+  }
+ },
+ "R2": {
+  "glob-lookup": {
+   "globs": [
+    "*spinach*garlic*",
+    "*garlic*spinach*"
+   ]
+  },
+  "field-lookup": {
+   "all": [
+    {
+     "ingredient": "spinach"
+    },
+    {
+     "ingredient": "garlic"
+    }
+   ]
+  },
+  "graph": {
+   "rule": "uses_all",
+   "items": [
+    "spinach",
+    "garlic"
+   ]
+  },
+  "hybrid": {
+   "like": "spinach and garlic",
+   "filters": [
+    {
+     "ingredient": "spinach"
+    },
+    {
+     "ingredient": "garlic"
+    }
+   ]
+  }
+ },
+ "R3": {
+  "glob-lookup": {
+   "globs": [
+    "*spinach*",
+    "*tomato*"
+   ]
+  },
+  "field-lookup": {
+   "all": [
+    {
+     "ingredient": "spinach"
+    }
+   ]
+  },
+  "graph": {
+   "rule": "basket",
+   "items": [
+    "spinach",
+    "tomato",
+    "garlic",
+    "onion"
+   ],
+   "min_used": 2,
+   "max_extra": 3
+  },
+  "hybrid": {
+   "like": "dinners using spinach and tomato",
+   "filters": [
+    {
+     "ingredient": "spinach"
+    }
+   ]
+  }
+ }
+}

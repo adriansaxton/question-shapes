@@ -1,0 +1,80 @@
+[
+ {
+  "id": "L1",
+  "shape": "lookup",
+  "text": "Vegetarian dinners I can make in 30 minutes or less",
+  "narrow": true,
+  "groups": [
+   "G09",
+   "G10",
+   "G11",
+   "G15",
+   "G18"
+  ]
+ },
+ {
+  "id": "L2",
+  "shape": "lookup",
+  "text": "Chicken breast dishes that are not curries",
+  "narrow": true,
+  "groups": [
+   "G02",
+   "G03"
+  ]
+ },
+ {
+  "id": "L3",
+  "shape": "lookup",
+  "text": "Fish dinners under 500 calories",
+  "narrow": true,
+  "groups": [
+   "G05",
+   "G07"
+  ]
+ },
+ {
+  "id": "S1",
+  "shape": "similarity",
+  "text": "Something like the cod with tomato and olive sauce, but not fish",
+  "seed": "cod-with-tomato-and-olive-sauce",
+  "judged": true
+ },
+ {
+  "id": "S2",
+  "shape": "similarity",
+  "text": "A light, fresh, zesty midweek dinner",
+  "judged": true
+ },
+ {
+  "id": "R1",
+  "shape": "relationship",
+  "text": "Dishes that share at least two fresh ingredients with the spinach and feta filo pie",
+  "seed": "spinach-and-feta-filo-pie",
+  "narrow": true,
+  "groups": [
+   "G09",
+   "G10",
+   "G16"
+  ]
+ },
+ {
+  "id": "R2",
+  "shape": "relationship",
+  "text": "Dishes that use both spinach and garlic",
+  "narrow": true,
+  "groups": [
+   "G02",
+   "G05",
+   "G10",
+   "G14",
+   "G16"
+  ]
+ },
+ {
+  "id": "R3",
+  "shape": "relationship",
+  "text": "Three dinners for the week that share fresh ingredients, so nothing goes to waste",
+  "check": "shares_fresh",
+  "n": 3
+ }
+]

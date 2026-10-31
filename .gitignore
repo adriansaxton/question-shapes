@@ -1,0 +1,9 @@
+# Local dependencies and model cache
+.deps/
+.models/
+__pycache__/
+# Private corpora, question sets, ground truth and results never go in the public repo
+private/
+results/
+.deps-pg/
+.deps-test/
